@@ -1,3 +1,14 @@
-#!/usr/local/bin/node
+#!/usr/bin/env node
 
-console.log('Hello')
+const http = require('http');
+const app = require('../app');
+
+const server = http.createServer(app);
+
+server.on('error', () => {
+  console.log('An error occurred while the server is running');
+});
+
+server.listen(5000, () => {
+  console.log('Server started successfully at port 5000');
+});
