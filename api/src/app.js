@@ -1,6 +1,6 @@
-const path = require('path');
-const morgan = require('morgan');
-const express = require('express');
+import path from 'path';
+import morgan from 'morgan';
+import express from 'express';
 
 const app = express();
 
@@ -8,10 +8,10 @@ app.use(express.json());
 app.use(morgan('combined'));
 app.use(express.static(path.resolve(__dirname, '..', 'api', 'public')));
 
-app.post('/sample', (req, res) => {
+app.post('/greet', (req, res) => {
   console.log(req.body);
 
   res.end('Request was handled successfully');
 });
 
-module.exports = app;
+export default app;
