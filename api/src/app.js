@@ -1,6 +1,7 @@
 import path from 'path';
 import morgan from 'morgan';
 import express from 'express';
+import { User } from '../db/models';
 
 const app = express();
 
@@ -8,10 +9,11 @@ app.use(express.json());
 app.use(morgan('combined'));
 app.use(express.static(path.resolve(__dirname, '..', 'api', 'public')));
 
-app.post('/greet', (req, res) => {
-  console.log(req.body);
+app.post('/greet', async (req, res) => {
+  const user = await User.create({ email: 'user@gmail.com', firstName: 'Abdulfatai', lastName: 'Aka' })
+  const count = await User.count();
 
-  res.end('Request was handled successfully');
+  res.end(`Request was handled successfully - ${user.id} - ${count}`);
 });
 
 export default app;
