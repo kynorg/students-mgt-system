@@ -10,7 +10,7 @@ app.use(morgan('combined'));
 app.use(express.static(path.resolve(__dirname, '..', 'api', 'public')));
 
 app.post('/greet', async (req, res) => {
-  const user = await User.create({ email: 'user@gmail.com', firstName: 'Abdulfatai', lastName: 'Aka' })
+  const user = await User.create({ username: 'Abdulfatai2', password: 'testpassword2' })
   const count = await User.count();
 
   res.end(`Request was handled successfully - ${user.id} - ${count}`);
