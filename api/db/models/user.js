@@ -16,15 +16,22 @@ module.exports = (sequelize, DataTypes) => {
   };
   User.init({
     id: {
+      allowNull: false,
       primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4
     },
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    password: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
     isAdmin: {
-      type: DataTypes.BOOLEAN,
       defaultValue: false,
+      type: DataTypes.BOOLEAN
     }
   }, {
     sequelize,

@@ -15,13 +15,23 @@ module.exports = (sequelize, DataTypes) => {
   };
   Student.init({
     id: {
+      allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    matric: DataTypes.STRING,
-    name: DataTypes.STRING,
-    dept: DataTypes.STRING,
+    matric: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    dept: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
     semester: DataTypes.STRING,
     session: DataTypes.STRING,
     image: DataTypes.STRING,
