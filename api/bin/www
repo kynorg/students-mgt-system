@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const http = require('http');
+const { sequelize } = require('../db/models');
 const { default: app } = require('../dist/app.js');
 
 const port = 7000;
@@ -11,5 +12,11 @@ server.on('error', () => {
 });
 
 server.listen(port, () => {
-  console.log(`Server started successfully at port ${port}`);
+  sequelize.authenticate().then(() => {
+    console.log('Connection to database was successful');
+    console.log(`Server started successfully at port ${port}`);
+  }).catch(() => {
+    console.log('Connection to database failed');
+    server.close();
+  })
 });
